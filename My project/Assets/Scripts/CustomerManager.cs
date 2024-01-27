@@ -14,7 +14,21 @@ public class CustomerManager : MonoBehaviour
     [SerializeField]
 
     private FoodItem[] foodList;
+    [SerializeField]
+    
     private FoodItem[] cookedFoodList;
+    
+    
+    [Header("Spawning")]
+    [SerializeField]
+    List<GrillStation> grillStations;
+
+    [SerializeField]
+    private int customersSpawned;
+
+    [SerializeField]
+    private AnimationCurve spawnCurve;
+
 
     private void Awake()
     {
