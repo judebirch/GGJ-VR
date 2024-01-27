@@ -21,7 +21,7 @@ public class ChairController : MonoBehaviour
 
     public Direction Direction = Direction.Right;
 
-    public bool Controller = true;
+    public bool Controller = false;
 
     public bool debug = false;
 
@@ -30,6 +30,12 @@ public class ChairController : MonoBehaviour
     private void Start()
     {
         m_RotoBerhaviour.Connect();
+    }
+
+
+    public void SetChairAngle(float angle)
+    {
+        m_RotoBerhaviour.RotateToAngleByCloserDirection(Mathf.RoundToInt(Angle), 100);
     }
 
     private void Update()
@@ -41,7 +47,7 @@ public class ChairController : MonoBehaviour
 
             Angle += change;
 
-            //ChairTransform.rotation = Quaternion.Euler(new Vector3(0, Angle, 0));
+            ChairTransform.rotation = Quaternion.Euler(new Vector3(0, Angle, 0));
 
             /*if (change > 0)
             {
