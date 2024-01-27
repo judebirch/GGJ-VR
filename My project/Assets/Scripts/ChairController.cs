@@ -54,8 +54,8 @@ public class ChairController : MonoBehaviour
 
             m_RotoBerhaviour.RotateToAngleByCloserDirection(Mathf.RoundToInt(Angle), 100);
 
-            debugText.text = "direction: " + ChairTransform.rotation.eulerAngles.y;
-            debugText.text += "\nsdk: " + m_RotoBerhaviour.readAngle;
+            //debugText.text = "direction: " + ChairTransform.rotation.eulerAngles.y;
+            //debugText.text += "\nsdk: " + m_RotoBerhaviour.readAngle;
 
 
         }
