@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18018535, g: 0.22559482, b: 0.30677685, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8758,7 +8758,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2311669582856603880, guid: 65b35db854d2c49c99cdb4f5ccf1d453, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.649
+      value: -0.15
       objectReference: {fileID: 0}
     - target: {fileID: 2311669582856603880, guid: 65b35db854d2c49c99cdb4f5ccf1d453, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8766,7 +8766,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2311669582856603880, guid: 65b35db854d2c49c99cdb4f5ccf1d453, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.573
+      value: 1.619
       objectReference: {fileID: 0}
     - target: {fileID: 2311669582856603880, guid: 65b35db854d2c49c99cdb4f5ccf1d453, type: 3}
       propertyPath: m_LocalRotation.w
@@ -14670,12 +14670,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3105363603505465679, guid: 5d8f413b100cab44d85e27d9e08335c6, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3105363603505465679, guid: 5d8f413b100cab44d85e27d9e08335c6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b342eb1e41a45ce41b5c7c684a17c465, type: 3}
     - target: {fileID: 8646508630895669667, guid: 5d8f413b100cab44d85e27d9e08335c6, type: 3}
       propertyPath: m_Name
       value: FoodObject
       objectReference: {fileID: 0}
+    - target: {fileID: 8869257677581084765, guid: 5d8f413b100cab44d85e27d9e08335c6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6933843585942835468, guid: 5d8f413b100cab44d85e27d9e08335c6, type: 3}
+    - {fileID: 490374013545680970, guid: 5d8f413b100cab44d85e27d9e08335c6, type: 3}
+    - {fileID: 7175594652067186111, guid: 5d8f413b100cab44d85e27d9e08335c6, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8646508630895669667, guid: 5d8f413b100cab44d85e27d9e08335c6, type: 3}
@@ -14699,7 +14714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 0}
+  m_InteractionManager: {fileID: 1912614555}
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
