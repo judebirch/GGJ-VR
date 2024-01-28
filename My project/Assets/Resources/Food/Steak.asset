@@ -16,3 +16,6 @@ MonoBehaviour:
   Cooked: {fileID: 11400000, guid: 1cfec76f1e9b3604f8fd061b01280f69, type: 2}
   CookTime: 10
   isCookFood: 1
+  Recipes:
+  - OtherIngredient: {fileID: 11400000, guid: 64a2d11e3615dc845915984fe09ca34c, type: 2}
+    Result: {fileID: 11400000, guid: c829162ab46f5ad4bbef99fdb3659d4f, type: 2}

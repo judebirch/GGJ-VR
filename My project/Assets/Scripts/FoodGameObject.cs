@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class FoodGameObject : MonoBehaviour
@@ -87,6 +88,22 @@ public class FoodGameObject : MonoBehaviour
             IsFire = false;
 
             SmokeParticles.Stop();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        var otherFood = collision.gameObject.GetComponentInChildren<FoodGameObject>();
+
+        if(otherFood != null)
+        {
+            var match = Item.Recipes.FirstOrDefault((v) => v.OtherIngredient.name == otherFood.Item.name);
+
+            if (match != null)
+            {
+                Setup(match.Result);
+                Destroy(collision.gameObject);
+            }
         }
     }
 }
