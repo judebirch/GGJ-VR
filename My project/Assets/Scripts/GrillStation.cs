@@ -39,7 +39,7 @@ public class GrillStation : Station
 
     public Vector3 GetNextSpawnLocation()
     {
-        return transform.position + transform.rotation*(spawnDirection.normalized*spawnDistance * (1 + queuingCustomers.Count));
+        return new Vector3(transform.position.x,0, transform.position.z) + transform.rotation*(spawnDirection.normalized*spawnDistance * (1 + queuingCustomers.Count));
     }
 
     public void Dequeue(CustomerController customerController)

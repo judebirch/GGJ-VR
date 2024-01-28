@@ -186,7 +186,7 @@ MonoBehaviour:
   CurrentFood: {fileID: 0}
   queuingCustomers: []
   spawnDirection: {x: 0, y: 0, z: 1}
-  spawnDistance: 2
+  spawnDistance: 1
 --- !u!1 &2470093021627658006
 GameObject:
   m_ObjectHideFlags: 0
