@@ -31,7 +31,7 @@ public class CustomerManager : MonoBehaviour
     private AnimationCurve spawnCurve;
 
     [SerializeField]
-    private float lastSpawnTime = -10;
+    private float lastSpawnTime = 10;
 
     [SerializeField]
     private float nextSpawnTime = 0;
