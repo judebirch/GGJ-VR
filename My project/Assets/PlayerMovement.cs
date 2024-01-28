@@ -29,6 +29,19 @@ public class PlayerMovement : MonoBehaviour
     bool buttonA;
     bool buttonB;
 
+
+    void TriggerRight()
+    {
+        Debug.Log("X pressed");
+        MoveRight();
+    }
+
+    void TriggerLeft()
+    {
+        Debug.Log("A pressed");
+        MoveLeft();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -44,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
             MoveRight();
         }*/
 
-        if (Input.GetButton("XRI_Right_PrimaryButton") && !buttonA)
+      /*  if (Input.GetButton("XRI_Right_PrimaryButton") && !buttonA)
         {
             Debug.Log("A pressed");
             MoveLeft();
@@ -74,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             //controller.SetChairSoftAngle((360 / stationCount) * targetStation);
-        }
+        }*/
     }
 
     public void MoveRight()
