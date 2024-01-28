@@ -530,7 +530,7 @@ MonoBehaviour:
   CustomerState: 0
   requestFood: {fileID: 0}
   currentPatientValue: 1
-  patientDecay: 0.025
+  patientDecay: 0.01
   grillStation: {fileID: 0}
   ragdoll: {fileID: 6939071162689749927}
   model: {fileID: 8565322610497838724}
