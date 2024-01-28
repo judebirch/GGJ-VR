@@ -6,7 +6,7 @@ using UnityEngine;
 public class CustomerController : MonoBehaviour
 {
     [Serializable]
-    enum CustomerStateEnum
+    public enum CustomerStateEnum
     {
         Queuing,
         Waiting,
@@ -53,7 +53,7 @@ public class CustomerController : MonoBehaviour
     void Start()
     {
         //DEBUG
-        CustomerState = CustomerStateEnum.Waiting;
+        // CustomerState = CustomerStateEnum.Queuing;
     }
 
     // Update is called once per frame
@@ -103,6 +103,7 @@ public class CustomerController : MonoBehaviour
                 break;
             case CustomerStateEnum.Annoyed:
                 Debug.Log("Customer is annoyed!!!");
+                PlayerMovement.current.SetStation(GameManager.Instance.Stations.IndexOf(grillStation));
                 break;
             case CustomerStateEnum.Served:
                 break;
@@ -124,6 +125,11 @@ public class CustomerController : MonoBehaviour
         {
             Destroy(foodGO.gameObject);
         }
+    }
+
+    public void StartWait()
+    {
+        ChangeState(CustomerStateEnum.Waiting);
     }
 
     private void OnCollisionEnter(Collision other)

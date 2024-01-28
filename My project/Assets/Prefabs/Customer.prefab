@@ -49,7 +49,7 @@ MonoBehaviour:
   CustomerState: 0
   requestFood: {fileID: 0}
   currentPatientValue: 1
-  patientDecay: 0.01
+  patientDecay: 0.025
   grillStation: {fileID: 0}
 --- !u!143 &3540331753155627346
 CharacterController:
