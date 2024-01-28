@@ -11,5 +11,14 @@ public class FoodItem : ScriptableObject
 
     public float CookTime;
     public bool isCookFood;
-    
+
+
+    public List<Recipe> Recipes;
+}
+
+[System.Serializable]
+public class Recipe
+{
+    public FoodItem OtherIngredient;
+    public FoodItem Result;
 }

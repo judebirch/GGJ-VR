@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7a92d9c5c53c0f429a707d877a0289d, type: 3}
-  m_Name: Lettuce
+  m_Name: Burger
   m_EditorClassIdentifier: 
-  Model: {fileID: 5179032172124296347, guid: aabb2455eb9a43048b1c441543e26b54, type: 3}
+  Model: {fileID: 5179032172124296347, guid: 801fcee19b46e3749be6c8d24a29933f, type: 3}
   Cooked: {fileID: 11400000, guid: 1cfec76f1e9b3604f8fd061b01280f69, type: 2}
   CookTime: 5
-  isCookFood: 0
+  isCookFood: 1
   Recipes: []
