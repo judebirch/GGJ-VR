@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CustomerController : MonoBehaviour
 {
@@ -34,8 +35,10 @@ public class CustomerController : MonoBehaviour
     [Header("Ragdoll")]
     [SerializeField]
     private GameObject ragdoll;
+    [FormerlySerializedAs("model")]
     [SerializeField]
-    GameObject model;
+    GameObject[] disableGOs;
+    
 
     [SerializeField]
     private CharacterController characterController;
@@ -149,7 +152,10 @@ public class CustomerController : MonoBehaviour
                 break;
             case CustomerStateEnum.Served:
                 GameManager.Instance.Served++;
-                model.SetActive(false);
+                foreach (GameObject disableGO in disableGOs)
+                {
+                    disableGO.SetActive(false);
+                }
                 ragdoll.SetActive(true);
                 characterController.enabled = false;
                 foreach (ParticleSystem system in vfx_Success)

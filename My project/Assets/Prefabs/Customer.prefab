@@ -568,7 +568,9 @@ MonoBehaviour:
   patientDecay: 0.01
   grillStation: {fileID: 0}
   ragdoll: {fileID: 6939071162689749927}
-  model: {fileID: 8565322610497838724}
+  disableGOs:
+  - {fileID: 8565322610497838724}
+  - {fileID: 197815403521782264}
   characterController: {fileID: 3540331753155627346}
   ragdollRB: {fileID: 5741839787425171618}
   ragdollForce: 50
