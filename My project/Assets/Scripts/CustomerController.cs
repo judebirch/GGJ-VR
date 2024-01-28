@@ -114,12 +114,16 @@ public class CustomerController : MonoBehaviour
     }
 
     [ContextMenu("AcceptFood")]
-    public void AcceptFood()
+    public void AcceptFood(FoodGameObject foodGO = null)
     {
         grillStation.Dequeue(this);
         
         //TODO: change destroy to ragdoll
         Destroy(gameObject);
+        if (!foodGO)
+        {
+            Destroy(foodGO.gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision other)
@@ -130,7 +134,19 @@ public class CustomerController : MonoBehaviour
         {
             if (foodGO.Item.name.Equals(requestFood.name))
             {
-                AcceptFood();
+                AcceptFood(foodGO);
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        FoodGameObject foodGO = other.gameObject.GetComponentInChildren<FoodGameObject>();
+        if (foodGO)
+        {
+            if (foodGO.Item.name.Equals(requestFood.name))
+            {
+                AcceptFood(foodGO);
             }
         }
     }

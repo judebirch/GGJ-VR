@@ -24,25 +24,25 @@ public class GameManager : MonoBehaviour, IFoodContainer
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.A))
-        {
-            MoveLeft();
-        }
-
-        if(Input.GetKeyDown(KeyCode.D))
-        {
-            MoveRight();
-        }
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            InteractButton();
-        }
-
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            ServeButton();
-        }
+        // if(Input.GetKeyDown(KeyCode.A))
+        // {
+        //     MoveLeft();
+        // }
+        //
+        // if(Input.GetKeyDown(KeyCode.D))
+        // {
+        //     MoveRight();
+        // }
+        //
+        // if (Input.GetKeyDown(KeyCode.F))
+        // {
+        //     InteractButton();
+        // }
+        //
+        // if (Input.GetKeyDown(KeyCode.G))
+        // {
+        //     ServeButton();
+        // }
     }
 
     public void InteractButton()
