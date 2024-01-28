@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour, IFoodContainer
 
         Time.timeScale = 0.02f;
         isFinished = true;
-        Invoke(nameof(OnRestartGame), 10f);
+        Invoke(nameof(OnRestartGame), 10f*Time.timeScale);
     }
 
     public void OnRestartGame()
