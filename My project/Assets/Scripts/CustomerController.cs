@@ -184,7 +184,12 @@ public class CustomerController : MonoBehaviour
     [ContextMenu("AcceptFood")]
     public void AcceptFood(FoodGameObject foodGO = null)
     {
-        grillStation.Dequeue(this);
+        if (CustomerState != CustomerStateEnum.Served)
+        {
+            Invoke(nameof(DelayDequeue),2f);
+
+        }
+
         ChangeState(CustomerStateEnum.Served);
         
         
@@ -194,6 +199,11 @@ public class CustomerController : MonoBehaviour
         {
             Destroy(foodGO.gameObject);
         }
+    }
+
+    private void DelayDequeue()
+    {
+        grillStation.Dequeue(this);
     }
 
     public void StartWait()
