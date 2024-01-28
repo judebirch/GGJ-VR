@@ -19,12 +19,17 @@ public class IngredientStation : Station
 
     public Image ItemImage;
 
+    public Image NameBacker;
+
     private void Awake()
     {
         Text.SetText(Ingredient.name);
         ItemImage.sprite = Ingredient.Icon;
 
         SpawnIngredientButton.Touched += Spawn;
+
+        NameBacker.color = Ingredient.NameColour;
+
     }
 
     private void Spawn()

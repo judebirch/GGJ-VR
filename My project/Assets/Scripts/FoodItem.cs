@@ -16,6 +16,9 @@ public class FoodItem : ScriptableObject
     // Only for food that can be requested
     public Sprite Icon;
 
+    // For Ingredients
+    public Color NameColour;
+
     public List<Recipe> Recipes;
 }
 

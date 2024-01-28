@@ -17,6 +17,7 @@ MonoBehaviour:
   CookTime: 5
   isCookFood: 1
   Icon: {fileID: 21300000, guid: 3ae60127877078f4689c8b070025ffe2, type: 3}
+  NameColour: {r: 0, g: 0.6886792, b: 0.0062043956, a: 1}
   Recipes:
   - OtherIngredient: {fileID: 11400000, guid: 64a2d11e3615dc845915984fe09ca34c, type: 2}
     Result: {fileID: 11400000, guid: a30796643d236a242921f47adcb0f3d9, type: 2}
