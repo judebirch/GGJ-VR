@@ -11270,6 +11270,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   lastSpawnTime: -10
   nextSpawnTime: 0
+  spawnSpeedMultiplier: 3
 --- !u!4 &1872773816
 Transform:
   m_ObjectHideFlags: 0

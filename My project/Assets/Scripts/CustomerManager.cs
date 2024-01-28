@@ -36,6 +36,9 @@ public class CustomerManager : MonoBehaviour
     [SerializeField]
     private float nextSpawnTime = 0;
 
+    [SerializeField]
+    private float spawnSpeedMultiplier = 1;
+
     public static CustomerManager current;
 
     private void Awake()
@@ -60,7 +63,7 @@ public class CustomerManager : MonoBehaviour
         if (Time.time - lastSpawnTime > nextSpawnTime)
         {
             SpawnCustomer();
-            nextSpawnTime = spawnCurve.Evaluate(customersSpawned);
+            nextSpawnTime = spawnCurve.Evaluate(customersSpawned)/spawnSpeedMultiplier;
             lastSpawnTime = Time.time;
         }
     }
@@ -71,6 +74,7 @@ public class CustomerManager : MonoBehaviour
         GrillStation randomGrill = grillStations[Random.Range(0, grillStations.Count)];
         CustomerController newCustomer = SpawnCustomerAt(randomGrill.GetNextSpawnLocation());
         randomGrill.Enqueue(newCustomer);
+        newCustomer.SetGrill(randomGrill);
         customersSpawned++;
         return newCustomer;
     }

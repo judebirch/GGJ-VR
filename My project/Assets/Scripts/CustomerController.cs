@@ -27,7 +27,9 @@ public class CustomerController : MonoBehaviour
 
     [SerializeField]
     private float patientDecay = 0.01f;
-    
+
+    [SerializeField]
+    private GrillStation grillStation;
     
     // Start is called before the first frame update
 
@@ -41,6 +43,11 @@ public class CustomerController : MonoBehaviour
     public void SetFood(FoodItem foodItem)
     {
         requestFood = foodItem;
+    }
+
+    public void SetGrill(GrillStation grillStation)
+    {
+        this.grillStation = grillStation;
     }
 
     void Start()
@@ -103,6 +110,28 @@ public class CustomerController : MonoBehaviour
                 Debug.Log("Customer is ANGRYU!!!");
 
                 break;
+        }
+    }
+
+    [ContextMenu("AcceptFood")]
+    public void AcceptFood()
+    {
+        grillStation.Dequeue(this);
+        
+        //TODO: change destroy to ragdoll
+        Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        // if(other.collider.CompareTag("Food"))
+        FoodGameObject foodGO = other.gameObject.GetComponentInChildren<FoodGameObject>();
+        if (foodGO)
+        {
+            if (foodGO.Item.name.Equals(requestFood.name))
+            {
+                AcceptFood();
+            }
         }
     }
 }

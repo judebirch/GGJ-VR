@@ -40,5 +40,13 @@ public class GrillStation : Station
 
     public void Dequeue(CustomerController customerController)
     {
+        
+        for (var i = queuingCustomers.Count-1; i > 0; i--)
+        {
+            var customer = queuingCustomers[i];
+            customer.transform.position = queuingCustomers[i - 1].transform.position;
+        }
+
+        queuingCustomers.Remove(customerController);
     }
 }
