@@ -54,8 +54,8 @@ public class PlayerMovement : MonoBehaviour
 
         buttonA = Input.GetButton("XRI_Right_PrimaryButton");
 
-        debugText.text = "Input: " + Input.GetButton("XRI_Right_PrimaryButton");
-
+       // debugText.text = "Input: " + Input.GetButton("XRI_Right_PrimaryButton");
+        debugText.text = "Keyup:" + Input.GetButtonUp("XRI_Right_PrimaryButton");
 
         if (Input.GetButton("XRI_Left_PrimaryButton") && !buttonB)
         {
