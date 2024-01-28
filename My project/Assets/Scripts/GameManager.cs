@@ -34,6 +34,12 @@ public class GameManager : MonoBehaviour, IFoodContainer
     {
         Instance = this;
         GameTimer = 0;
+        Time.timeScale = .02f;
+        Invoke(nameof(DelayStart),10);
+    }
+
+    void DelayStart()
+    {
         Time.timeScale = 1;
     }
 
