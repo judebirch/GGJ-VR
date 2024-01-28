@@ -47,7 +47,19 @@ public class CustomerController : MonoBehaviour
 
     public ItemRequestUI ItemRequestUI;
 
+
+    [Header("VFX")]
+    [SerializeField]
+    private ParticleSystem[] vfx_Annoy;
+    [SerializeField]
+    private ParticleSystem[] vfx_Success;
     
+    [Header("SFX")]
+
+    [SerializeField]
+    private AudioSource[] sfx_Annoy;
+    [SerializeField]
+    private AudioSource[] sfx_Success;
     // Start is called before the first frame update
 
     
@@ -125,12 +137,30 @@ public class CustomerController : MonoBehaviour
             case CustomerStateEnum.Annoyed:
                 Debug.Log("Customer is annoyed!!!");
                 PlayerMovement.current.SetStation(GameManager.Instance.Stations.IndexOf(grillStation));
+                foreach (ParticleSystem system in vfx_Annoy)
+                {
+                    system.Play();
+                }
+                foreach (AudioSource system in sfx_Annoy)
+                {
+                    system.Play();
+                }
+
                 break;
             case CustomerStateEnum.Served:
                 GameManager.Instance.Served++;
                 model.SetActive(false);
                 ragdoll.SetActive(true);
                 characterController.enabled = false;
+                foreach (ParticleSystem system in vfx_Success)
+                {
+                    system.Play();
+                }
+                foreach (AudioSource system in sfx_Success)
+                {
+                    system.Play();
+                }
+
                 Invoke(nameof(PushRagdoll),.2f);
                 break;
             case CustomerStateEnum.Angry:
