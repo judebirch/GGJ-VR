@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour, IFoodContainer
     public List<Station> Stations;
 
 
-
     public GameObject GameOverUI;
     public TMP_Text GameOverText;
 
@@ -70,13 +69,12 @@ public class GameManager : MonoBehaviour, IFoodContainer
 
     public void ServeButton()
     {
-
     }
 
     public void MoveLeft()
     {
         AngleId -= 1;
-        if(AngleId < 0)
+        if (AngleId < 0)
         {
             AngleId += 8;
         }
@@ -91,6 +89,7 @@ public class GameManager : MonoBehaviour, IFoodContainer
         {
             AngleId -= 8;
         }
+
         angleIdText.SetText(AngleId.ToString());
     }
 
@@ -112,7 +111,6 @@ public class GameManager : MonoBehaviour, IFoodContainer
     }
 
 
-
     public void GameOver()
     {
         GameOverUI.SetActive(true);
@@ -126,8 +124,9 @@ public class GameManager : MonoBehaviour, IFoodContainer
 
         GameOverText.SetText(stringBuild.ToString());
 
-        Time.timeScale = 0;
+        Time.timeScale = 0.02f;
         isFinished = true;
+        Invoke(nameof(OnRestartGame), 10f);
     }
 
     public void OnRestartGame()
@@ -137,8 +136,8 @@ public class GameManager : MonoBehaviour, IFoodContainer
         {
             return;
         }
+
         string currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneName);
     }
 }
-
