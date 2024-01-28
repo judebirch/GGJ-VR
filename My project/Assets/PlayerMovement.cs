@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] ChairController controller;
 
     [SerializeField] int stationCount = 8;
+
+    [SerializeField] TMP_Text debugText;
 
     int targetStation = 0;
 
@@ -41,10 +44,12 @@ public class PlayerMovement : MonoBehaviour
         if (prevStation != targetStation) //if needs a change
         {
             controller.SetChairAngle((360 / stationCount) * targetStation);
+            prevStation = targetStation;
+            debugText.text = ((360 / stationCount) * targetStation).ToString();
         }
         else
         {
-            controller.SetChairSoftAngle((360 / stationCount) * targetStation);
+            //controller.SetChairSoftAngle((360 / stationCount) * targetStation);
         }
     }
 
