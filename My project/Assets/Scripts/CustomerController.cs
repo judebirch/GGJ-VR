@@ -120,7 +120,7 @@ public class CustomerController : MonoBehaviour
         
         //TODO: change destroy to ragdoll
         Destroy(gameObject);
-        if (!foodGO)
+        if (foodGO)
         {
             Destroy(foodGO.gameObject);
         }
@@ -130,6 +130,11 @@ public class CustomerController : MonoBehaviour
     {
         // if(other.collider.CompareTag("Food"))
         FoodGameObject foodGO = other.gameObject.GetComponentInChildren<FoodGameObject>();
+        if (!foodGO)
+        {
+            foodGO = other.gameObject.GetComponentInParent<FoodGameObject>();
+
+        }
         if (foodGO)
         {
             if (foodGO.Item.name.Equals(requestFood.name))
@@ -142,6 +147,12 @@ public class CustomerController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         FoodGameObject foodGO = other.gameObject.GetComponentInChildren<FoodGameObject>();
+        if (!foodGO)
+        {
+            foodGO = other.gameObject.GetComponentInParent<FoodGameObject>();
+
+        }
+        
         if (foodGO)
         {
             if (foodGO.Item.name.Equals(requestFood.name))
