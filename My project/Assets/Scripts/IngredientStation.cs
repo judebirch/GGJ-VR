@@ -6,11 +6,24 @@ public class IngredientStation : Station
 {
     public FoodItem Ingredient;
 
+    public GameObject FoodPrefab;
+
     public TMPro.TMP_Text Text;
+
+    public SpawnIngredientButton SpawnIngredientButton;
 
     private void Awake()
     {
         Text.SetText(Ingredient.name);
+
+        SpawnIngredientButton.Touched += Spawn;
+    }
+
+    private void Spawn()
+    {
+        var newObject = Instantiate(FoodPrefab, SpawnIngredientButton.transform.position, Quaternion.identity);
+
+        newObject.GetComponent<FoodGameObject>().Setup(Ingredient);
     }
 
     public override void OnInteract()
