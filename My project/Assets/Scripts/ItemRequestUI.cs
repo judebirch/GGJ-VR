@@ -9,9 +9,12 @@ public class ItemRequestUI : MonoBehaviour
 
     public Image fillImage;
 
+    public TMPro.TMP_Text Text;
+
     public void Setup(FoodItem item)
     {
         image.sprite = item.Icon;
+        Text.SetText(item.name);
     }
 
     public void SetProgress(float percentage)
