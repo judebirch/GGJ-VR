@@ -30,6 +30,21 @@ public class CustomerController : MonoBehaviour
 
     [SerializeField]
     private GrillStation grillStation;
+
+    [Header("Ragdoll")]
+    [SerializeField]
+    private GameObject ragdoll;
+    [SerializeField]
+    GameObject model;
+
+    [SerializeField]
+    private CharacterController characterController;
+
+    [SerializeField]
+    private Rigidbody ragdollRB;
+    [SerializeField]
+    float ragdollForce = 10f;
+
     
     // Start is called before the first frame update
 
@@ -38,6 +53,7 @@ public class CustomerController : MonoBehaviour
     {
         // var[] loadedFood
         // requestFood = ;
+        ragdoll.SetActive(false);
     }
 
     public void SetFood(FoodItem foodItem)
@@ -106,6 +122,11 @@ public class CustomerController : MonoBehaviour
                 PlayerMovement.current.SetStation(GameManager.Instance.Stations.IndexOf(grillStation));
                 break;
             case CustomerStateEnum.Served:
+                GameManager.Instance.Served++;
+                model.SetActive(false);
+                ragdoll.SetActive(true);
+                characterController.enabled = false;
+                Invoke(nameof(PushRagdoll),.2f);
                 break;
             case CustomerStateEnum.Angry:
                 Debug.Log("Customer is ANGRYU!!!");
@@ -114,13 +135,20 @@ public class CustomerController : MonoBehaviour
         }
     }
 
+    private void PushRagdoll()
+    {
+        ragdollRB.AddForce(ragdollForce * -transform.forward, ForceMode.Acceleration);
+    }
+
     [ContextMenu("AcceptFood")]
     public void AcceptFood(FoodGameObject foodGO = null)
     {
         grillStation.Dequeue(this);
+        ChangeState(CustomerStateEnum.Served);
+        
         
         //TODO: change destroy to ragdoll
-        Destroy(gameObject);
+        Destroy(gameObject,10f);
         if (foodGO)
         {
             Destroy(foodGO.gameObject);

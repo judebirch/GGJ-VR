@@ -76,6 +76,7 @@ public class CustomerManager : MonoBehaviour
         randomGrill.Enqueue(newCustomer);
         newCustomer.SetGrill(randomGrill);
         customersSpawned++;
+        GameManager.Instance.WaitingCustomers = customersSpawned - GameManager.Instance.Served;
         return newCustomer;
     }
 
