@@ -26,11 +26,14 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    bool buttonA;
+    bool buttonB;
+
     // Update is called once per frame
     void Update()
     {
 
-        if(Input.GetButtonDown("XRI_Right_PrimaryButton"))
+        /*if(Input.GetButtonDown("XRI_Right_PrimaryButton"))
         {
             Debug.Log("A pressed");
             MoveLeft();
@@ -39,7 +42,26 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("X pressed");
             MoveRight();
+        }*/
+
+        if (Input.GetButton("XRI_Right_PrimaryButton") && !buttonA)
+        {
+            Debug.Log("A pressed");
+            MoveLeft();
         }
+
+        buttonA = Input.GetButton("XRI_Right_PrimaryButton");
+
+
+
+
+        if (Input.GetButton("XRI_Left_PrimaryButton") && !buttonB)
+        {
+            Debug.Log("X pressed");
+            MoveRight();
+        }
+
+        buttonB = Input.GetButton("XRI_Left_PrimaryButton");
 
         if (prevStation != targetStation) //if needs a change
         {
