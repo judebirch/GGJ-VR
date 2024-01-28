@@ -224,7 +224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentFood: {fileID: 0}
   Ingredient: {fileID: 11400000, guid: 6a9f218abe5379a45ad4a54803b56496, type: 2}
-  FoodPrefab: {fileID: 8646508630895669667, guid: 5d8f413b100cab44d85e27d9e08335c6, type: 3}
+  FoodPrefab: {fileID: 2605322735730727572, guid: 0efe2bb651d2d4542a900fd179c9c3cb, type: 3}
   Text: {fileID: 7352813002541316612}
   SpawnIngredientButton: {fileID: 2268693275602767580}
 --- !u!1 &7250544571274638322

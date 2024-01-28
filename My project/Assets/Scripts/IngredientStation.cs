@@ -23,7 +23,7 @@ public class IngredientStation : Station
     {
         var newObject = Instantiate(FoodPrefab, SpawnIngredientButton.transform.position, Quaternion.identity);
 
-        newObject.GetComponent<FoodGameObject>().Setup(Ingredient);
+        newObject.GetComponentInChildren<FoodGameObject>().Setup(Ingredient);
     }
 
     public override void OnInteract()

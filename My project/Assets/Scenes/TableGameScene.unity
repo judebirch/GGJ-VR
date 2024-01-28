@@ -6046,7 +6046,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -8933,79 +8933,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!1001 &1410536448
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2311669582856603880, guid: 65b35db854d2c49c99cdb4f5ccf1d453, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2311669582856603880, guid: 65b35db854d2c49c99cdb4f5ccf1d453, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.94725
-      objectReference: {fileID: 0}
-    - target: {fileID: 2311669582856603880, guid: 65b35db854d2c49c99cdb4f5ccf1d453, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.619
-      objectReference: {fileID: 0}
-    - target: {fileID: 2311669582856603880, guid: 65b35db854d2c49c99cdb4f5ccf1d453, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.64278764
-      objectReference: {fileID: 0}
-    - target: {fileID: 2311669582856603880, guid: 65b35db854d2c49c99cdb4f5ccf1d453, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2311669582856603880, guid: 65b35db854d2c49c99cdb4f5ccf1d453, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.7660445
-      objectReference: {fileID: 0}
-    - target: {fileID: 2311669582856603880, guid: 65b35db854d2c49c99cdb4f5ccf1d453, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2311669582856603880, guid: 65b35db854d2c49c99cdb4f5ccf1d453, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2311669582856603880, guid: 65b35db854d2c49c99cdb4f5ccf1d453, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2311669582856603880, guid: 65b35db854d2c49c99cdb4f5ccf1d453, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3125326138668094034, guid: 65b35db854d2c49c99cdb4f5ccf1d453, type: 3}
-      propertyPath: m_Name
-      value: Blaster
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 65b35db854d2c49c99cdb4f5ccf1d453, type: 3}
---- !u!114 &1410536449 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1489840752940031430, guid: 65b35db854d2c49c99cdb4f5ccf1d453, type: 3}
-  m_PrefabInstance: {fileID: 1410536448}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f369c769e8961844a3c7ccacd4c3cd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1410536450 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1922661630911493863, guid: 65b35db854d2c49c99cdb4f5ccf1d453, type: 3}
-  m_PrefabInstance: {fileID: 1410536448}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1443325202
 GameObject:
   m_ObjectHideFlags: 0
@@ -12506,7 +12433,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -15015,7 +14942,7 @@ MonoBehaviour:
   m_Activated:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1410536449}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.XR.Content.Interaction.LaunchProjectile,
           Assembly-CSharp
         m_MethodName: Fire
@@ -15061,7 +14988,7 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_AttachTransform: {fileID: 1410536450}
+  m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
   m_UseDynamicAttach: 0
   m_MatchAttachPosition: 1
@@ -15133,5 +15060,4 @@ SceneRoots:
   - {fileID: 1664131014}
   - {fileID: 1886010011}
   - {fileID: 7566316845547865764}
-  - {fileID: 1410536448}
   - {fileID: 1090477035}
