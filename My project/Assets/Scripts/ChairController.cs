@@ -39,6 +39,12 @@ public class ChairController : MonoBehaviour
         ChairTransform.rotation = Quaternion.Euler(new Vector3(0, angle, 0));
     }
 
+    public void SetChairSoftAngle(float angle)
+    {
+        m_RotoBerhaviour.RotateToAngleByCloserDirection(Mathf.RoundToInt(angle), 1);
+        ChairTransform.rotation = Quaternion.Euler(new Vector3(0, angle, 0));
+    }
+
     private void Update()
     {
         if (Controller)

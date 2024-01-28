@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
 
     int targetStation = 0;
 
+    int prevStation = 1;
+    
 
 
 
@@ -36,8 +38,14 @@ public class PlayerMovement : MonoBehaviour
             MoveRight();
         }
 
-
-        controller.SetChairAngle((360/stationCount)*targetStation);
+        if (prevStation != targetStation) //if needs a change
+        {
+            controller.SetChairAngle((360 / stationCount) * targetStation);
+        }
+        else
+        {
+            controller.SetChairSoftAngle((360 / stationCount) * targetStation);
+        }
     }
 
     public void MoveRight()
