@@ -40,6 +40,8 @@ public class FoodGameObject : MonoBehaviour
 
     public UnityEngine.UI.Image ProgressImage;
 
+    public ParticleSystem SmokeParticles;
+
     private void Update()
     {
         if(IsFire)
@@ -71,6 +73,8 @@ public class FoodGameObject : MonoBehaviour
             ProgressImage.gameObject.SetActive(true);
 
             IsFire = true;
+
+            SmokeParticles.Play();
         }
     }
 
@@ -81,6 +85,8 @@ public class FoodGameObject : MonoBehaviour
             ProgressImage.gameObject.SetActive(false);
 
             IsFire = false;
+
+            SmokeParticles.Stop();
         }
     }
 }
