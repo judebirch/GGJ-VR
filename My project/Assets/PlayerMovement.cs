@@ -122,14 +122,16 @@ public class PlayerMovement : MonoBehaviour
         {
             targetStation += stationCount;
         }
-
         targetStation = targetStation % stationCount;
+
         Debug.Log("Left " + targetStation);
         Debug.Log("calc:  " + (360 / stationCount) * targetStation);
+        controller.SetChairAngle((360 / stationCount) * targetStation);
     }
 
     public void SetStation(int station)
     {
         targetStation = station;
+        controller.SetChairAngle((360 / stationCount) * targetStation);
     }
 }
