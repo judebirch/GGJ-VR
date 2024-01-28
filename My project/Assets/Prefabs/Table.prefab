@@ -183,6 +183,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentFood: {fileID: 0}
+  queuingCustomers: []
+  spawnDirection: {x: 0, y: 0, z: 1}
+  spawnDistance: 2
 --- !u!1 &8164368169142660346
 GameObject:
   m_ObjectHideFlags: 0
