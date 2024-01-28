@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CustomerController : MonoBehaviour
 {
@@ -14,8 +15,9 @@ public class CustomerController : MonoBehaviour
         Served,
         Angry
     }
+    [FormerlySerializedAs("CustomerState")]
     [SerializeField]
-    private CustomerStateEnum CustomerState = CustomerStateEnum.Queuing;
+    private CustomerStateEnum customerState = CustomerStateEnum.Queuing;
     [Header("Food")]
     [SerializeField]
     private FoodItem requestFood;
@@ -34,8 +36,10 @@ public class CustomerController : MonoBehaviour
     [Header("Ragdoll")]
     [SerializeField]
     private GameObject ragdoll;
+    [FormerlySerializedAs("model")]
     [SerializeField]
-    GameObject model;
+    GameObject[] disableGOs;
+    
 
     [SerializeField]
     private CharacterController characterController;
@@ -61,8 +65,8 @@ public class CustomerController : MonoBehaviour
     [SerializeField]
     private AudioSource[] sfx_Success;
     // Start is called before the first frame update
+    public CustomerStateEnum CustomerState => customerState;
 
-    
     private void Awake()
     {
         // var[] loadedFood
@@ -92,9 +96,14 @@ public class CustomerController : MonoBehaviour
     {
         ItemRequestUI.SetProgress(currentPatientValue);
 
-        switch (CustomerState)
+        switch (customerState)
         {
             case CustomerStateEnum.Queuing:
+                if (currentPatientValue > .3f)
+                {
+                    currentPatientValue -= patientDecay*.5f * Time.deltaTime;
+
+                }
                 break;
             case CustomerStateEnum.Waiting:
                 if (currentPatientValue > 0f)
@@ -127,7 +136,7 @@ public class CustomerController : MonoBehaviour
 
     void ChangeState(CustomerStateEnum newState)
     {
-        CustomerState = newState;
+        customerState = newState;
         switch (newState)
         {
             case CustomerStateEnum.Queuing:
@@ -149,7 +158,10 @@ public class CustomerController : MonoBehaviour
                 break;
             case CustomerStateEnum.Served:
                 GameManager.Instance.Served++;
-                model.SetActive(false);
+                foreach (GameObject disableGO in disableGOs)
+                {
+                    disableGO.SetActive(false);
+                }
                 ragdoll.SetActive(true);
                 characterController.enabled = false;
                 foreach (ParticleSystem system in vfx_Success)
@@ -178,7 +190,12 @@ public class CustomerController : MonoBehaviour
     [ContextMenu("AcceptFood")]
     public void AcceptFood(FoodGameObject foodGO = null)
     {
-        grillStation.Dequeue(this);
+        if (customerState != CustomerStateEnum.Served)
+        {
+            Invoke(nameof(DelayDequeue),2f);
+
+        }
+
         ChangeState(CustomerStateEnum.Served);
         
         
@@ -190,6 +207,11 @@ public class CustomerController : MonoBehaviour
         }
     }
 
+    private void DelayDequeue()
+    {
+        grillStation.Dequeue(this);
+    }
+
     public void StartWait()
     {
         ChangeState(CustomerStateEnum.Waiting);
@@ -198,6 +220,11 @@ public class CustomerController : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         // if(other.collider.CompareTag("Food"))
+        if (customerState != CustomerStateEnum.Waiting)
+        {
+            return;
+        }
+        
         FoodGameObject foodGO = other.gameObject.GetComponentInChildren<FoodGameObject>();
         if (!foodGO)
         {
@@ -215,6 +242,11 @@ public class CustomerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (customerState != CustomerStateEnum.Waiting)
+        {
+            return;
+        }
+
         FoodGameObject foodGO = other.gameObject.GetComponentInChildren<FoodGameObject>();
         if (!foodGO)
         {
