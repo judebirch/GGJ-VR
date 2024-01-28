@@ -5,52 +5,40 @@ using UnityEngine;
 public class GrillStation : Station
 {
     // private float _timer;
+    [SerializeField]
+    private List<CustomerController> queuingCustomers;
+
+    [SerializeField]
+    private Vector3 spawnDirection;
+
+    [SerializeField]
+    private float spawnDistance;
+
+    private CustomerController currentCustomer => queuingCustomers[0];
 
     public override void OnFoodAdded(FoodItem food)
     {
-        // base.OnFoodAdded(food);
-        //
-        // _timer = 0;
-
     }
 
     public override void OnInteract()
     {
-        // if(CurrentFood == null)
-        // {
-        //     if(GameManager.Instance.HeldFoodItem != null)
-        //     {
-        //         _timer = 0;
-        //         AddFood(GameManager.Instance.RemoveFood());
-        //     }
-        // }
-        // else
-        // {
-        //     if (GameManager.Instance.HeldFoodItem == null)
-        //     {
-        //         if (CurrentFood != null)
-        //         {
-        //             GameManager.Instance.AddFood(RemoveFood());
-        //
-        //             _timer = 0;
-        //         }
-        //     }
-        // }
     }
 
     private void Update()
     {
-        // if (CurrentFood != null)
-        // {
-        //     _timer += Time.deltaTime;
-        //
-        //     if(_timer >= CurrentFood.CookTime)
-        //     {
-        //         var cookedFood = CurrentFood.Cooked;
-        //         RemoveFood();
-        //         AddFood(cookedFood);
-        //         _timer = 0;
-        //     }
-        // }
+    }
+
+    public void Enqueue(CustomerController customerController)
+    {
+        queuingCustomers.Add(customerController);
+    }
+
+    public Vector3 GetNextSpawnLocation()
+    {
+        return transform.position + transform.rotation*(spawnDirection.normalized*spawnDistance * (1 + queuingCustomers.Count));
+    }
+
+    public void Dequeue(CustomerController customerController)
+    {
     }
 }

@@ -8,14 +8,14 @@ public class CustomerController : MonoBehaviour
     [Serializable]
     enum CustomerStateEnum
     {
-        Walking,
+        Queuing,
         Waiting,
         Annoyed,
         Served,
         Angry
     }
     [SerializeField]
-    private CustomerStateEnum CustomerState = CustomerStateEnum.Walking;
+    private CustomerStateEnum CustomerState = CustomerStateEnum.Queuing;
     [Header("Food")]
     [SerializeField]
     private FoodItem requestFood;
@@ -31,6 +31,7 @@ public class CustomerController : MonoBehaviour
     
     // Start is called before the first frame update
 
+    
     private void Awake()
     {
         // var[] loadedFood
@@ -53,7 +54,7 @@ public class CustomerController : MonoBehaviour
     {
         switch (CustomerState)
         {
-            case CustomerStateEnum.Walking:
+            case CustomerStateEnum.Queuing:
                 break;
             case CustomerStateEnum.Waiting:
                 if (currentPatientValue > 0f)
@@ -89,7 +90,7 @@ public class CustomerController : MonoBehaviour
         CustomerState = newState;
         switch (newState)
         {
-            case CustomerStateEnum.Walking:
+            case CustomerStateEnum.Queuing:
                 break;
             case CustomerStateEnum.Waiting:
                 break;
