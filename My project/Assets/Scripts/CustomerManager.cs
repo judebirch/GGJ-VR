@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -29,9 +30,21 @@ public class CustomerManager : MonoBehaviour
     [SerializeField]
     private AnimationCurve spawnCurve;
 
+    [SerializeField]
+    private float lastSpawnTime = -10;
+
+    [SerializeField]
+    private float nextSpawnTime = 0;
+
+    [SerializeField]
+    private float spawnSpeedMultiplier = 1;
+
+    public static CustomerManager current;
 
     private void Awake()
     {
+        current = this;
+        
         foodList = Resources.LoadAll<FoodItem>("Food");
         List<FoodItem> cooked = new List<FoodItem>();
         foreach (FoodItem item in foodList)
@@ -45,7 +58,28 @@ public class CustomerManager : MonoBehaviour
         cookedFoodList = cooked.ToArray();
     }
 
-    public CustomerController SpawnCustomer(Vector3 position)
+    private void Update()
+    {
+        if (Time.time - lastSpawnTime > nextSpawnTime)
+        {
+            SpawnCustomer();
+            nextSpawnTime = spawnCurve.Evaluate(customersSpawned)/spawnSpeedMultiplier;
+            lastSpawnTime = Time.time;
+        }
+    }
+
+    [ContextMenu("SpawnCustomer")]
+    public CustomerController SpawnCustomer()
+    {
+        GrillStation randomGrill = grillStations[Random.Range(0, grillStations.Count)];
+        CustomerController newCustomer = SpawnCustomerAt(randomGrill.GetNextSpawnLocation());
+        randomGrill.Enqueue(newCustomer);
+        newCustomer.SetGrill(randomGrill);
+        customersSpawned++;
+        return newCustomer;
+    }
+
+    public CustomerController SpawnCustomerAt(Vector3 position)
     {
         CustomerController newCustomer = Instantiate(customerBase, position, Quaternion.identity, transform).GetComponent<CustomerController>();
         newCustomer.SetFood(cookedFoodList[Random.Range(0,cookedFoodList.Length)]);
@@ -56,6 +90,6 @@ public class CustomerManager : MonoBehaviour
     [ContextMenu("Test_Spawn")]
     public void Test_Spawn()
     {
-        SpawnCustomer(new Vector3(Random.Range(-10,10),0,Random.Range(-10,10)));
+        SpawnCustomerAt(new Vector3(Random.Range(-10,10),0,Random.Range(-10,10)));
     }
 }

@@ -8,14 +8,14 @@ public class CustomerController : MonoBehaviour
     [Serializable]
     enum CustomerStateEnum
     {
-        Walking,
+        Queuing,
         Waiting,
         Annoyed,
         Served,
         Angry
     }
     [SerializeField]
-    private CustomerStateEnum CustomerState = CustomerStateEnum.Walking;
+    private CustomerStateEnum CustomerState = CustomerStateEnum.Queuing;
     [Header("Food")]
     [SerializeField]
     private FoodItem requestFood;
@@ -27,10 +27,13 @@ public class CustomerController : MonoBehaviour
 
     [SerializeField]
     private float patientDecay = 0.01f;
-    
+
+    [SerializeField]
+    private GrillStation grillStation;
     
     // Start is called before the first frame update
 
+    
     private void Awake()
     {
         // var[] loadedFood
@@ -40,6 +43,11 @@ public class CustomerController : MonoBehaviour
     public void SetFood(FoodItem foodItem)
     {
         requestFood = foodItem;
+    }
+
+    public void SetGrill(GrillStation grillStation)
+    {
+        this.grillStation = grillStation;
     }
 
     void Start()
@@ -53,7 +61,7 @@ public class CustomerController : MonoBehaviour
     {
         switch (CustomerState)
         {
-            case CustomerStateEnum.Walking:
+            case CustomerStateEnum.Queuing:
                 break;
             case CustomerStateEnum.Waiting:
                 if (currentPatientValue > 0f)
@@ -89,7 +97,7 @@ public class CustomerController : MonoBehaviour
         CustomerState = newState;
         switch (newState)
         {
-            case CustomerStateEnum.Walking:
+            case CustomerStateEnum.Queuing:
                 break;
             case CustomerStateEnum.Waiting:
                 break;
@@ -102,6 +110,28 @@ public class CustomerController : MonoBehaviour
                 Debug.Log("Customer is ANGRYU!!!");
 
                 break;
+        }
+    }
+
+    [ContextMenu("AcceptFood")]
+    public void AcceptFood()
+    {
+        grillStation.Dequeue(this);
+        
+        //TODO: change destroy to ragdoll
+        Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        // if(other.collider.CompareTag("Food"))
+        FoodGameObject foodGO = other.gameObject.GetComponentInChildren<FoodGameObject>();
+        if (foodGO)
+        {
+            if (foodGO.Item.name.Equals(requestFood.name))
+            {
+                AcceptFood();
+            }
         }
     }
 }
