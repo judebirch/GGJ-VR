@@ -34,6 +34,12 @@ public class GameManager : MonoBehaviour, IFoodContainer
     {
         Instance = this;
         GameTimer = 0;
+        Time.timeScale = .02f;
+        Invoke(nameof(DelayStart),10*Time.timeScale);
+    }
+
+    void DelayStart()
+    {
         Time.timeScale = 1;
     }
 
@@ -126,11 +132,13 @@ public class GameManager : MonoBehaviour, IFoodContainer
 
         Time.timeScale = 0.02f;
         isFinished = true;
-        Invoke(nameof(OnRestartGame), 10f);
+        //Invoke(nameof(OnRestartGame), 10f*Time.timeScale);
     }
 
     public void OnRestartGame()
     {
+        return;
+
         Debug.Log("restart press");
         if (!isFinished)
         {
