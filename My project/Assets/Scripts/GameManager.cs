@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour, IFoodContainer
@@ -17,13 +19,26 @@ public class GameManager : MonoBehaviour, IFoodContainer
 
     public List<Station> Stations;
 
+
+
+    public GameObject GameOverUI;
+    public TMP_Text GameOverText;
+
+    public float GameTimer;
+    public int WaitingCustomers;
+    public int Served;
+
+
     private void Awake()
     {
         Instance = this;
+        GameTimer = 0;
     }
 
     private void Update()
     {
+        GameTimer += Time.deltaTime;
+
         // if(Input.GetKeyDown(KeyCode.A))
         // {
         //     MoveLeft();
@@ -92,4 +107,29 @@ public class GameManager : MonoBehaviour, IFoodContainer
         HeldFoodItem = null;
         return temp;
     }
+
+
+
+    public void GameOver()
+    {
+        GameOverUI.SetActive(true);
+
+        var stringBuild = new StringBuilder();
+
+        stringBuild.AppendLine("Game Over!");
+
+        stringBuild.AppendLine("Time Survived: " + GameTimer);
+        stringBuild.AppendLine("Served: " + Served);
+
+        GameOverText.SetText(stringBuild.ToString());
+
+        Time.timeScale = 0;
+    }
+
+    public void RestartGame()
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
+    }
 }
+

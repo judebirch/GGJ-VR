@@ -62,7 +62,7 @@ public class FoodGameObject : MonoBehaviour
     {
         // Position progress
         Camera camera = Camera.main;
-        ProgressImage.transform.position = transform.position + Vector3.up * 1;
+        ProgressImage.transform.position = transform.position + Vector3.up * 0.3f;
         ProgressImage.transform.LookAt(ProgressImage.transform.position + camera.transform.rotation * Vector3.back, camera.transform.rotation * Vector3.up);
     }
 
