@@ -11719,6 +11719,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e62ceb25638c8984c8f6776955354a3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1738189708 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 793822162841491534, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
+  m_PrefabInstance: {fileID: 6854204586830632613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98cddb24eb208564bb1b9087b1e67826, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1789226704
 GameObject:
   m_ObjectHideFlags: 0
@@ -14960,6 +14971,102 @@ PrefabInstance:
       propertyPath: debugText
       value: 
       objectReference: {fileID: 218594118}
+    - target: {fileID: 1239899853398435373, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
+      propertyPath: m_Actions
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: 3f2e0066c81ce2c81b6e41cfb9ecc6c1, type: 3}
+    - target: {fileID: 1239899853398435373, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
+      propertyPath: m_DefaultActionMap
+      value: PlayerXRButtons
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239899853398435373, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239899853398435373, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
+      propertyPath: m_NotificationBehavior
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239899853398435373, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 74
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239899853398435373, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
+      propertyPath: m_NeverAutoSwitchControlSchemes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239899853398435373, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
+      propertyPath: m_ActionEvents.Array.data[72].m_ActionId
+      value: bcb32766-5229-4a27-a6ce-e35a84991c6b
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239899853398435373, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
+      propertyPath: m_ActionEvents.Array.data[73].m_ActionId
+      value: a4e2c958-8e1d-4646-8400-c4636b051106
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239899853398435373, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
+      propertyPath: m_ActionEvents.Array.data[72].m_ActionName
+      value: XRI Buttons/MoveRight[/Gamepad/buttonSouth]
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239899853398435373, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
+      propertyPath: m_ActionEvents.Array.data[73].m_ActionName
+      value: XRI Buttons/MoveLeft[/Gamepad/buttonWest]
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239899853398435373, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
+      propertyPath: m_ActionEvents.Array.data[72].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239899853398435373, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
+      propertyPath: m_ActionEvents.Array.data[73].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239899853398435373, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
+      propertyPath: m_ActionEvents.Array.data[72].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239899853398435373, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
+      propertyPath: m_ActionEvents.Array.data[73].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239899853398435373, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
+      propertyPath: m_ActionEvents.Array.data[72].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1738189708}
+    - target: {fileID: 1239899853398435373, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
+      propertyPath: m_ActionEvents.Array.data[73].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1738189708}
+    - target: {fileID: 1239899853398435373, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
+      propertyPath: m_ActionEvents.Array.data[72].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239899853398435373, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
+      propertyPath: m_ActionEvents.Array.data[73].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239899853398435373, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
+      propertyPath: m_ActionEvents.Array.data[72].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MoveRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239899853398435373, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
+      propertyPath: m_ActionEvents.Array.data[73].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MoveLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239899853398435373, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
+      propertyPath: m_ActionEvents.Array.data[72].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerMovement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239899853398435373, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
+      propertyPath: m_ActionEvents.Array.data[73].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerMovement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239899853398435373, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
+      propertyPath: m_ActionEvents.Array.data[72].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239899853398435373, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
+      propertyPath: m_ActionEvents.Array.data[73].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3076380421283148576, guid: 8b0d47d895d76a1c197b2711acf425ff, type: 3}
       propertyPath: m_Name
       value: Controller
