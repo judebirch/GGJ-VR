@@ -562,7 +562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 315f4a0ac46f87cb6a02d569263ed8c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CustomerState: 0
+  customerState: 0
   requestFood: {fileID: 0}
   currentPatientValue: 1
   patientDecay: 0.01
@@ -571,6 +571,7 @@ MonoBehaviour:
   disableGOs:
   - {fileID: 8565322610497838724}
   - {fileID: 197815403521782264}
+  - {fileID: 1212769297035020989}
   characterController: {fileID: 3540331753155627346}
   ragdollRB: {fileID: 5741839787425171618}
   ragdollForce: 50

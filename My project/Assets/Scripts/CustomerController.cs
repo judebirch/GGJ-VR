@@ -15,8 +15,9 @@ public class CustomerController : MonoBehaviour
         Served,
         Angry
     }
+    [FormerlySerializedAs("CustomerState")]
     [SerializeField]
-    private CustomerStateEnum CustomerState = CustomerStateEnum.Queuing;
+    private CustomerStateEnum customerState = CustomerStateEnum.Queuing;
     [Header("Food")]
     [SerializeField]
     private FoodItem requestFood;
@@ -64,8 +65,8 @@ public class CustomerController : MonoBehaviour
     [SerializeField]
     private AudioSource[] sfx_Success;
     // Start is called before the first frame update
+    public CustomerStateEnum CustomerState => customerState;
 
-    
     private void Awake()
     {
         // var[] loadedFood
@@ -95,9 +96,14 @@ public class CustomerController : MonoBehaviour
     {
         ItemRequestUI.SetProgress(currentPatientValue);
 
-        switch (CustomerState)
+        switch (customerState)
         {
             case CustomerStateEnum.Queuing:
+                if (currentPatientValue > .3f)
+                {
+                    currentPatientValue -= patientDecay*.5f * Time.deltaTime;
+
+                }
                 break;
             case CustomerStateEnum.Waiting:
                 if (currentPatientValue > 0f)
@@ -130,7 +136,7 @@ public class CustomerController : MonoBehaviour
 
     void ChangeState(CustomerStateEnum newState)
     {
-        CustomerState = newState;
+        customerState = newState;
         switch (newState)
         {
             case CustomerStateEnum.Queuing:
@@ -184,7 +190,7 @@ public class CustomerController : MonoBehaviour
     [ContextMenu("AcceptFood")]
     public void AcceptFood(FoodGameObject foodGO = null)
     {
-        if (CustomerState != CustomerStateEnum.Served)
+        if (customerState != CustomerStateEnum.Served)
         {
             Invoke(nameof(DelayDequeue),2f);
 
@@ -214,6 +220,11 @@ public class CustomerController : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         // if(other.collider.CompareTag("Food"))
+        if (customerState != CustomerStateEnum.Waiting)
+        {
+            return;
+        }
+        
         FoodGameObject foodGO = other.gameObject.GetComponentInChildren<FoodGameObject>();
         if (!foodGO)
         {
@@ -231,6 +242,11 @@ public class CustomerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (customerState != CustomerStateEnum.Waiting)
+        {
+            return;
+        }
+
         FoodGameObject foodGO = other.gameObject.GetComponentInChildren<FoodGameObject>();
         if (!foodGO)
         {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,17 @@ public class GrillStation : Station
 
     private void Update()
     {
+    }
+
+    private void FixedUpdate()
+    {
+        if (queuingCustomers.Count == 1)
+        {
+            if (queuingCustomers[0].CustomerState == CustomerController.CustomerStateEnum.Queuing)
+            {
+                queuingCustomers[0].StartWait();
+            }
+        }
     }
 
     public void Enqueue(CustomerController customerController)
