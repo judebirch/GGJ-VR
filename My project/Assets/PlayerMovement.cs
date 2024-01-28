@@ -54,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
     {
         
         targetStation = targetStation - 1 ;
+        if (targetStation < 0) { targetStation += stationCount; }
         targetStation = targetStation % stationCount;
         Debug.Log("Left " + targetStation);
         Debug.Log("calc:  " + (360 / stationCount) * targetStation);
