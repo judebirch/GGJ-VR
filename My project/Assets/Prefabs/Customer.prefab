@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 5102620954496039011}
   - component: {fileID: 8416279312362831732}
   m_Layer: 0
-  m_Name: Image
+  m_Name: FillImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -402,6 +402,7 @@ MonoBehaviour:
   characterController: {fileID: 3540331753155627346}
   ragdollRB: {fileID: 5741839787425171618}
   ragdollForce: 50
+  ItemRequestUI: {fileID: 4881359059223759384}
 --- !u!143 &3540331753155627346
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3827,6 +3828,7 @@ GameObject:
   - component: {fileID: 802746229591124641}
   - component: {fileID: 1979427320197596357}
   - component: {fileID: 1425645688420506825}
+  - component: {fileID: 4881359059223759384}
   m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
@@ -3894,6 +3896,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4881359059223759384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4724617047835402610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5041ea0c7bab72741b77c07ea6e48e6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1451946243802340759}
+  fillImage: {fileID: 8416279312362831732}
 --- !u!1 &5200136252309475172
 GameObject:
   m_ObjectHideFlags: 0
@@ -4251,7 +4267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8207547, g: 0.27546096, b: 0.14324492, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

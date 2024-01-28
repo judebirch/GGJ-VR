@@ -45,6 +45,8 @@ public class CustomerController : MonoBehaviour
     [SerializeField]
     float ragdollForce = 10f;
 
+    public ItemRequestUI ItemRequestUI;
+
     
     // Start is called before the first frame update
 
@@ -59,6 +61,7 @@ public class CustomerController : MonoBehaviour
     public void SetFood(FoodItem foodItem)
     {
         requestFood = foodItem;
+        ItemRequestUI.Setup(foodItem);
     }
 
     public void SetGrill(GrillStation grillStation)
@@ -75,6 +78,8 @@ public class CustomerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ItemRequestUI.SetProgress(currentPatientValue);
+
         switch (CustomerState)
         {
             case CustomerStateEnum.Queuing:
