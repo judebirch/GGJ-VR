@@ -137,6 +137,7 @@ Transform:
   m_Children:
   - {fileID: 2750659961675660468}
   - {fileID: 7243802398965395516}
+  - {fileID: 9019578577573325709}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5985543764647261877
@@ -227,6 +228,7 @@ MonoBehaviour:
   FoodPrefab: {fileID: 2605322735730727572, guid: 0efe2bb651d2d4542a900fd179c9c3cb, type: 3}
   Text: {fileID: 7352813002541316612}
   SpawnIngredientButton: {fileID: 2268693275602767580}
+  SpawnPoint: {fileID: 9019578577573325709}
 --- !u!1 &7250544571274638322
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,6 +363,37 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &7884846663687245312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9019578577573325709}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9019578577573325709
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7884846663687245312}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.182, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5846288086981700708}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8190227887292429679
 GameObject:
   m_ObjectHideFlags: 0

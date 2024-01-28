@@ -13,6 +13,9 @@ public class FoodItem : ScriptableObject
     public bool isCookFood;
 
 
+    // Only for food that can be requested
+    public Sprite Icon;
+
     public List<Recipe> Recipes;
 }
 

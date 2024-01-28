@@ -12,6 +12,8 @@ public class IngredientStation : Station
 
     public SpawnIngredientButton SpawnIngredientButton;
 
+    public Transform SpawnPoint;
+
     private void Awake()
     {
         Text.SetText(Ingredient.name);
@@ -21,7 +23,7 @@ public class IngredientStation : Station
 
     private void Spawn()
     {
-        var newObject = Instantiate(FoodPrefab, SpawnIngredientButton.transform.position, Quaternion.identity);
+        var newObject = Instantiate(FoodPrefab, SpawnPoint.position, Quaternion.identity);
 
         newObject.GetComponentInChildren<FoodGameObject>().Setup(Ingredient);
     }

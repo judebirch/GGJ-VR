@@ -43,6 +43,8 @@ public class FoodGameObject : MonoBehaviour
 
     public ParticleSystem SmokeParticles;
 
+    public AudioSource SizzleSound;
+
     private void Update()
     {
         if(IsFire)
@@ -76,6 +78,8 @@ public class FoodGameObject : MonoBehaviour
             IsFire = true;
 
             SmokeParticles.Play();
+
+            SizzleSound.Play();
         }
     }
 
@@ -88,6 +92,8 @@ public class FoodGameObject : MonoBehaviour
             IsFire = false;
 
             SmokeParticles.Stop();
+
+            SizzleSound.Stop();
         }
     }
 
