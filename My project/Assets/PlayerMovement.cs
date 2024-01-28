@@ -48,11 +48,13 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("A pressed");
             MoveLeft();
+
+           
         }
 
         buttonA = Input.GetButton("XRI_Right_PrimaryButton");
 
-
+        debugText.text = "Input: " + Input.GetButton("XRI_Right_PrimaryButton");
 
 
         if (Input.GetButton("XRI_Left_PrimaryButton") && !buttonB)
@@ -67,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
         {
             controller.SetChairAngle((360 / stationCount) * targetStation);
             prevStation = targetStation;
-            debugText.text = ((360 / stationCount) * targetStation).ToString();
+           // debugText.text = ((360 / stationCount) * targetStation).ToString();
         }
         else
         {
