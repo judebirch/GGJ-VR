@@ -6,7 +6,7 @@ using UnityEngine;
 public class CustomerController : MonoBehaviour
 {
     [Serializable]
-    enum CustomerStateEnum
+    public enum CustomerStateEnum
     {
         Queuing,
         Waiting,
@@ -53,7 +53,7 @@ public class CustomerController : MonoBehaviour
     void Start()
     {
         //DEBUG
-        CustomerState = CustomerStateEnum.Waiting;
+        // CustomerState = CustomerStateEnum.Queuing;
     }
 
     // Update is called once per frame
@@ -103,6 +103,7 @@ public class CustomerController : MonoBehaviour
                 break;
             case CustomerStateEnum.Annoyed:
                 Debug.Log("Customer is annoyed!!!");
+                PlayerMovement.current.SetStation(GameManager.Instance.Stations.IndexOf(grillStation));
                 break;
             case CustomerStateEnum.Served:
                 break;
@@ -120,16 +121,26 @@ public class CustomerController : MonoBehaviour
         
         //TODO: change destroy to ragdoll
         Destroy(gameObject);
-        if (!foodGO)
+        if (foodGO)
         {
             Destroy(foodGO.gameObject);
         }
+    }
+
+    public void StartWait()
+    {
+        ChangeState(CustomerStateEnum.Waiting);
     }
 
     private void OnCollisionEnter(Collision other)
     {
         // if(other.collider.CompareTag("Food"))
         FoodGameObject foodGO = other.gameObject.GetComponentInChildren<FoodGameObject>();
+        if (!foodGO)
+        {
+            foodGO = other.gameObject.GetComponentInParent<FoodGameObject>();
+
+        }
         if (foodGO)
         {
             if (foodGO.Item.name.Equals(requestFood.name))
@@ -142,6 +153,12 @@ public class CustomerController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         FoodGameObject foodGO = other.gameObject.GetComponentInChildren<FoodGameObject>();
+        if (!foodGO)
+        {
+            foodGO = other.gameObject.GetComponentInParent<FoodGameObject>();
+
+        }
+        
         if (foodGO)
         {
             if (foodGO.Item.name.Equals(requestFood.name))

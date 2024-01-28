@@ -31,6 +31,10 @@ public class GrillStation : Station
     public void Enqueue(CustomerController customerController)
     {
         queuingCustomers.Add(customerController);
+        if (queuingCustomers.Count == 1)
+        {
+            customerController.StartWait();
+        }
     }
 
     public Vector3 GetNextSpawnLocation()
@@ -46,7 +50,20 @@ public class GrillStation : Station
             var customer = queuingCustomers[i];
             customer.transform.position = queuingCustomers[i - 1].transform.position;
         }
+        if (queuingCustomers.Count == 1)
+        {
+            queuingCustomers[0].StartWait();
+        }
 
         queuingCustomers.Remove(customerController);
+    }
+
+    [ContextMenu("Test_Dequeue")]
+    public void Test_Dequeue()
+    {
+        if (queuingCustomers.Count > 0)
+        {
+            queuingCustomers[0].AcceptFood();
+        }
     }
 }
