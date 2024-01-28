@@ -106,6 +106,7 @@ public class CustomerController : MonoBehaviour
                 PlayerMovement.current.SetStation(GameManager.Instance.Stations.IndexOf(grillStation));
                 break;
             case CustomerStateEnum.Served:
+                GameManager.Instance.Served++;
                 break;
             case CustomerStateEnum.Angry:
                 Debug.Log("Customer is ANGRYU!!!");
@@ -118,6 +119,8 @@ public class CustomerController : MonoBehaviour
     public void AcceptFood(FoodGameObject foodGO = null)
     {
         grillStation.Dequeue(this);
+        ChangeState(CustomerStateEnum.Served);
+        
         
         //TODO: change destroy to ragdoll
         Destroy(gameObject);
