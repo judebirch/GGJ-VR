@@ -28,11 +28,14 @@ public class GameManager : MonoBehaviour, IFoodContainer
     public int WaitingCustomers;
     public int Served;
 
+    public bool isFinished = false;
+
 
     private void Awake()
     {
         Instance = this;
         GameTimer = 0;
+        Time.timeScale = 1;
     }
 
     private void Update()
@@ -124,10 +127,16 @@ public class GameManager : MonoBehaviour, IFoodContainer
         GameOverText.SetText(stringBuild.ToString());
 
         Time.timeScale = 0;
+        isFinished = true;
     }
 
-    public void RestartGame()
+    public void OnRestartGame()
     {
+        Debug.Log("restart press");
+        if (!isFinished)
+        {
+            return;
+        }
         string currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneName);
     }

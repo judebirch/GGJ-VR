@@ -130,7 +130,7 @@ public class CustomerController : MonoBehaviour
                 break;
             case CustomerStateEnum.Angry:
                 Debug.Log("Customer is ANGRYU!!!");
-
+                GameManager.Instance.GameOver();
                 break;
         }
     }
