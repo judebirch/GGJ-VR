@@ -11128,7 +11128,7 @@ MonoBehaviour:
   slider: {fileID: 731528583}
   Angle: 0
   Direction: 0
-  Controller: 1
+  Controller: 0
   debug: 0
 --- !u!114 &1738189708
 MonoBehaviour:

@@ -32,23 +32,31 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetButtonDown("XRI_Left_PrimaryButton"))
         {
-            Debug.Log("Left pressed");
+            Debug.Log("X pressed");
             MoveRight();
         }
+
 
         controller.SetChairAngle((360/stationCount)*targetStation);
     }
 
     public void MoveRight()
     {
+       
         targetStation = targetStation + 1;
         targetStation = targetStation % stationCount;
+        Debug.Log("right " + targetStation);
+        Debug.Log("calc:  " + (360 / stationCount) * targetStation);
+        controller.SetChairAngle((360 / stationCount) * targetStation);
     }
 
     public void MoveLeft()
     {
+        
         targetStation = targetStation - 1 ;
         targetStation = targetStation % stationCount;
+        Debug.Log("Left " + targetStation);
+        Debug.Log("calc:  " + (360 / stationCount) * targetStation);
     }
 
     public void SetStation(int station)
