@@ -11246,10 +11246,30 @@ MonoBehaviour:
   customersSpawned: 0
   spawnCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 10
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 10
+      value: 5
+      inSlope: -0.9698258
+      outSlope: -0.9698258
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.037588596
+      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  lastSpawnTime: -10
+  nextSpawnTime: 0
 --- !u!4 &1872773816
 Transform:
   m_ObjectHideFlags: 0

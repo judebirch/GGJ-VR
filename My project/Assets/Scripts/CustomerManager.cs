@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -29,6 +30,12 @@ public class CustomerManager : MonoBehaviour
     [SerializeField]
     private AnimationCurve spawnCurve;
 
+    [SerializeField]
+    private float lastSpawnTime = -10;
+
+    [SerializeField]
+    private float nextSpawnTime = 0;
+
     public static CustomerManager current;
 
     private void Awake()
@@ -50,7 +57,12 @@ public class CustomerManager : MonoBehaviour
 
     private void Update()
     {
-        
+        if (Time.time - lastSpawnTime > nextSpawnTime)
+        {
+            SpawnCustomer();
+            nextSpawnTime = spawnCurve.Evaluate(customersSpawned);
+            lastSpawnTime = Time.time;
+        }
     }
 
     [ContextMenu("SpawnCustomer")]
@@ -59,6 +71,7 @@ public class CustomerManager : MonoBehaviour
         GrillStation randomGrill = grillStations[Random.Range(0, grillStations.Count)];
         CustomerController newCustomer = SpawnCustomerAt(randomGrill.GetNextSpawnLocation());
         randomGrill.Enqueue(newCustomer);
+        customersSpawned++;
         return newCustomer;
     }
 
