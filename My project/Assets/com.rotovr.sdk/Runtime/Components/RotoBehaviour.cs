@@ -147,6 +147,11 @@ namespace RotoVR.SDK.Components
             m_Roto.Connect(m_DeviceName);
         }
 
+        public int GetRotoAngle()
+        {
+            return m_Roto.GetRotoAngle();
+        }
+
         /// <summary>
         /// Calibrate the chair
         /// </summary>

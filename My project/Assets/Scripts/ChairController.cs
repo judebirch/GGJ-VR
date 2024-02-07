@@ -7,6 +7,7 @@ using TMPro;
 using RotoVR.SDK.Enum;
 using System.IO;
 using UnityEngine.UI;
+using static Example.UI.UIController;
 
 public class ChairController : MonoBehaviour
 {
@@ -27,10 +28,45 @@ public class ChairController : MonoBehaviour
 
     float timer = 0f;
 
+    bool chairConnected = false;
+
+    float connectTimer = 5f;
+
     private void Start()
     {
-        m_RotoBerhaviour.Connect();
+        bool chairConnected = false;
+
+        m_RotoBerhaviour.OnConnectionStatusChanged += OnConnectionHandler;
+        m_RotoBerhaviour.Calibration(CalibrationMode.SetCurrent);
+
+
+        /* m_RotoBerhaviour.Connect();*/
+
+
     }
+
+    private void OnConnectionHandler(ConnectionStatus status)
+    {
+        debugText.text += "\nChair status update...";
+        debugText.text += "\n Angle = " + m_RotoBerhaviour.GetRotoAngle();
+        Debug.LogWarning("Chair status update...");
+        if (status == ConnectionStatus.Connected)
+        {
+            Debug.LogWarning("Chair connected!");
+            debugText.text += "\nChair connected!";
+            chairConnected = true;
+            m_RotoBerhaviour.Calibration(CalibrationMode.SetCurrent);
+            SetChairAngle(0);
+        }
+        else
+        {
+            Debug.LogWarning("Chair not connected");
+            debugText.text += "\nChair NOT connected!";
+            chairConnected = false;
+        }
+    }
+
+    
 
 
     public void SetChairAngle(float angle)
@@ -49,6 +85,20 @@ public class ChairController : MonoBehaviour
 
     private void Update()
     {
+
+
+        
+
+
+        connectTimer += Time.deltaTime;
+        if (!chairConnected && connectTimer > 5f)
+        {
+            debugText.text += "\nattempting to connect chair " + chairConnected + " " + connectTimer;
+            Debug.LogWarning("Attemping to connect chair...");
+            m_RotoBerhaviour.Connect();
+            connectTimer = 0f;
+        }
+
         if (Controller)
         {
 

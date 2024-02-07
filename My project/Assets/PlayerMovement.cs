@@ -23,7 +23,11 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+<<<<<<< Updated upstream
 
+=======
+        controller.SetChairAngle(0);
+>>>>>>> Stashed changes
     }
 
     bool buttonA;
@@ -97,6 +101,10 @@ public class PlayerMovement : MonoBehaviour
         targetStation = targetStation % stationCount;
         Debug.Log("right " + targetStation);
         Debug.Log("calc:  " + (360 / stationCount) * targetStation);
+
+        debugText.text += "\nright " + targetStation;
+        debugText.text += "\ncalc:  " + (360 / stationCount) * targetStation;
+
         controller.SetChairAngle((360 / stationCount) * targetStation);
     }
 
@@ -108,6 +116,14 @@ public class PlayerMovement : MonoBehaviour
         targetStation = targetStation % stationCount;
         Debug.Log("Left " + targetStation);
         Debug.Log("calc:  " + (360 / stationCount) * targetStation);
+<<<<<<< Updated upstream
+=======
+
+        debugText.text += "\nleft " + targetStation;
+        debugText.text += "\ncalc:  " + (360 / stationCount) * targetStation;
+
+        controller.SetChairAngle((360 / stationCount) * targetStation);
+>>>>>>> Stashed changes
     }
 
     public void SetStation(int station)

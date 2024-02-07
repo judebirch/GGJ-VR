@@ -92,4 +92,41 @@ public class GameManager : MonoBehaviour, IFoodContainer
         HeldFoodItem = null;
         return temp;
     }
+<<<<<<< Updated upstream
 }
+=======
+
+
+    public void GameOver()
+    {
+        GameOverUI.SetActive(true);
+
+        var stringBuild = new StringBuilder();
+
+        stringBuild.AppendLine("Game Over!");
+
+        stringBuild.AppendLine("Time Survived: " + GameTimer);
+        stringBuild.AppendLine("Served: " + Served);
+
+        GameOverText.SetText(stringBuild.ToString());
+
+        Time.timeScale = 0.02f;
+        isFinished = true;
+        //Invoke(nameof(OnRestartGame), 10f*Time.timeScale);
+    }
+
+    public void OnRestartGame()
+    {
+      /*  return;*/
+
+        Debug.Log("restart press");
+       /* if (!isFinished)
+        {
+            return;
+        }*/
+
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
+    }
+}
+>>>>>>> Stashed changes

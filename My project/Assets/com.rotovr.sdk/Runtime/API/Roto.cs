@@ -151,6 +151,12 @@ namespace RotoVR.SDK.API
                     JsonConvert.SerializeObject(new ModeModel(mode.ToString(), parametersModel))));
         }
 
+
+        public int GetRotoAngle()
+        {
+            return m_RotoData.Angle;
+        }
+
         /// <summary>
         /// Calibrate RotoVR as zero rotation
         /// </summary>
