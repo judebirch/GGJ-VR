@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CustomerController : MonoBehaviour
 {
     [Serializable]
-    enum CustomerStateEnum
+    public enum CustomerStateEnum
     {
         Queuing,
         Waiting,
@@ -14,8 +15,9 @@ public class CustomerController : MonoBehaviour
         Served,
         Angry
     }
+    [FormerlySerializedAs("CustomerState")]
     [SerializeField]
-    private CustomerStateEnum CustomerState = CustomerStateEnum.Queuing;
+    private CustomerStateEnum customerState = CustomerStateEnum.Queuing;
     [Header("Food")]
     [SerializeField]
     private FoodItem requestFood;
@@ -30,19 +32,52 @@ public class CustomerController : MonoBehaviour
 
     [SerializeField]
     private GrillStation grillStation;
-    
-    // Start is called before the first frame update
 
+    [Header("Ragdoll")]
+    [SerializeField]
+    private GameObject ragdoll;
+    [FormerlySerializedAs("model")]
+    [SerializeField]
+    GameObject[] disableGOs;
     
+
+    [SerializeField]
+    private CharacterController characterController;
+
+    [SerializeField]
+    private Rigidbody ragdollRB;
+    [SerializeField]
+    float ragdollForce = 10f;
+
+    public ItemRequestUI ItemRequestUI;
+
+
+    [Header("VFX")]
+    [SerializeField]
+    private ParticleSystem[] vfx_Annoy;
+    [SerializeField]
+    private ParticleSystem[] vfx_Success;
+    
+    [Header("SFX")]
+
+    [SerializeField]
+    private AudioSource[] sfx_Annoy;
+    [SerializeField]
+    private AudioSource[] sfx_Success;
+    // Start is called before the first frame update
+    public CustomerStateEnum CustomerState => customerState;
+
     private void Awake()
     {
         // var[] loadedFood
         // requestFood = ;
+        ragdoll.SetActive(false);
     }
 
     public void SetFood(FoodItem foodItem)
     {
         requestFood = foodItem;
+        ItemRequestUI.Setup(foodItem);
     }
 
     public void SetGrill(GrillStation grillStation)
@@ -53,15 +88,22 @@ public class CustomerController : MonoBehaviour
     void Start()
     {
         //DEBUG
-        CustomerState = CustomerStateEnum.Waiting;
+        // CustomerState = CustomerStateEnum.Queuing;
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (CustomerState)
+        ItemRequestUI.SetProgress(currentPatientValue);
+
+        switch (customerState)
         {
             case CustomerStateEnum.Queuing:
+                if (currentPatientValue > .3f)
+                {
+                    currentPatientValue -= patientDecay*.5f * Time.deltaTime;
+
+                }
                 break;
             case CustomerStateEnum.Waiting:
                 if (currentPatientValue > 0f)
@@ -94,7 +136,7 @@ public class CustomerController : MonoBehaviour
 
     void ChangeState(CustomerStateEnum newState)
     {
-        CustomerState = newState;
+        customerState = newState;
         switch (newState)
         {
             case CustomerStateEnum.Queuing:
@@ -103,34 +145,120 @@ public class CustomerController : MonoBehaviour
                 break;
             case CustomerStateEnum.Annoyed:
                 Debug.Log("Customer is annoyed!!!");
+                PlayerMovement.current.SetStation(GameManager.Instance.Stations.IndexOf(grillStation));
+                foreach (ParticleSystem system in vfx_Annoy)
+                {
+                    system.Play();
+                }
+                foreach (AudioSource system in sfx_Annoy)
+                {
+                    system.Play();
+                }
+
                 break;
             case CustomerStateEnum.Served:
+                GameManager.Instance.Served++;
+                foreach (GameObject disableGO in disableGOs)
+                {
+                    disableGO.SetActive(false);
+                }
+                ragdoll.SetActive(true);
+                characterController.enabled = false;
+                foreach (ParticleSystem system in vfx_Success)
+                {
+                    system.Play();
+                }
+                foreach (AudioSource system in sfx_Success)
+                {
+                    system.Play();
+                }
+
+                Invoke(nameof(PushRagdoll),.2f);
                 break;
             case CustomerStateEnum.Angry:
                 Debug.Log("Customer is ANGRYU!!!");
-
+                GameManager.Instance.GameOver();
                 break;
         }
     }
 
-    [ContextMenu("AcceptFood")]
-    public void AcceptFood()
+    private void PushRagdoll()
     {
-        grillStation.Dequeue(this);
+        ragdollRB.AddForce(ragdollForce * -transform.forward, ForceMode.Acceleration);
+    }
+
+    [ContextMenu("AcceptFood")]
+    public void AcceptFood(FoodGameObject foodGO = null)
+    {
+        if (customerState != CustomerStateEnum.Served)
+        {
+            Invoke(nameof(DelayDequeue),2f);
+
+        }
+
+        ChangeState(CustomerStateEnum.Served);
+        
         
         //TODO: change destroy to ragdoll
-        Destroy(gameObject);
+        Destroy(gameObject,10f);
+        if (foodGO)
+        {
+            Destroy(foodGO.gameObject);
+        }
+    }
+
+    private void DelayDequeue()
+    {
+        grillStation.Dequeue(this);
+    }
+
+    public void StartWait()
+    {
+        ChangeState(CustomerStateEnum.Waiting);
     }
 
     private void OnCollisionEnter(Collision other)
     {
         // if(other.collider.CompareTag("Food"))
+        if (customerState != CustomerStateEnum.Waiting)
+        {
+            return;
+        }
+        
         FoodGameObject foodGO = other.gameObject.GetComponentInChildren<FoodGameObject>();
+        if (!foodGO)
+        {
+            foodGO = other.gameObject.GetComponentInParent<FoodGameObject>();
+
+        }
         if (foodGO)
         {
             if (foodGO.Item.name.Equals(requestFood.name))
             {
-                AcceptFood();
+                AcceptFood(foodGO);
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (customerState != CustomerStateEnum.Waiting)
+        {
+            return;
+        }
+
+        FoodGameObject foodGO = other.gameObject.GetComponentInChildren<FoodGameObject>();
+        if (!foodGO)
+        {
+            foodGO = other.gameObject.GetComponentInParent<FoodGameObject>();
+
+        }
+        
+        if (foodGO)
+        {
+            if (foodGO.Item.name.Equals(requestFood.name))
+            {
+                AcceptFood(foodGO);
             }
         }
     }

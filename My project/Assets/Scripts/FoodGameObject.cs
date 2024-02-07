@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class FoodGameObject : MonoBehaviour
@@ -40,6 +41,10 @@ public class FoodGameObject : MonoBehaviour
 
     public UnityEngine.UI.Image ProgressImage;
 
+    public ParticleSystem SmokeParticles;
+
+    public AudioSource SizzleSound;
+
     private void Update()
     {
         if(IsFire)
@@ -60,7 +65,7 @@ public class FoodGameObject : MonoBehaviour
     {
         // Position progress
         Camera camera = Camera.main;
-        ProgressImage.transform.position = transform.position + Vector3.up * 1;
+        ProgressImage.transform.position = transform.position + Vector3.up * 0.3f;
         ProgressImage.transform.LookAt(ProgressImage.transform.position + camera.transform.rotation * Vector3.back, camera.transform.rotation * Vector3.up);
     }
 
@@ -71,6 +76,10 @@ public class FoodGameObject : MonoBehaviour
             ProgressImage.gameObject.SetActive(true);
 
             IsFire = true;
+
+            SmokeParticles.Play();
+
+            SizzleSound.Play();
         }
     }
 
@@ -81,6 +90,26 @@ public class FoodGameObject : MonoBehaviour
             ProgressImage.gameObject.SetActive(false);
 
             IsFire = false;
+
+            SmokeParticles.Stop();
+
+            SizzleSound.Stop();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        var otherFood = collision.gameObject.GetComponentInChildren<FoodGameObject>();
+
+        if(otherFood != null)
+        {
+            var match = Item.Recipes.FirstOrDefault((v) => v.OtherIngredient.name == otherFood.Item.name);
+
+            if (match != null)
+            {
+                Setup(match.Result);
+                Destroy(collision.gameObject);
+            }
         }
     }
 }

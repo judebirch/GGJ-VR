@@ -31,7 +31,7 @@ public class CustomerManager : MonoBehaviour
     private AnimationCurve spawnCurve;
 
     [SerializeField]
-    private float lastSpawnTime = -10;
+    private float lastSpawnTime = 10;
 
     [SerializeField]
     private float nextSpawnTime = 0;
@@ -72,16 +72,17 @@ public class CustomerManager : MonoBehaviour
     public CustomerController SpawnCustomer()
     {
         GrillStation randomGrill = grillStations[Random.Range(0, grillStations.Count)];
-        CustomerController newCustomer = SpawnCustomerAt(randomGrill.GetNextSpawnLocation());
+        CustomerController newCustomer = SpawnCustomerAt(randomGrill.GetNextSpawnLocation(),Quaternion.Euler(randomGrill.transform.eulerAngles.x,randomGrill.transform.eulerAngles.y-180,randomGrill.transform.eulerAngles.z));
         randomGrill.Enqueue(newCustomer);
         newCustomer.SetGrill(randomGrill);
         customersSpawned++;
+        GameManager.Instance.WaitingCustomers = customersSpawned - GameManager.Instance.Served;
         return newCustomer;
     }
 
-    public CustomerController SpawnCustomerAt(Vector3 position)
+    public CustomerController SpawnCustomerAt(Vector3 position,Quaternion rotation)
     {
-        CustomerController newCustomer = Instantiate(customerBase, position, Quaternion.identity, transform).GetComponent<CustomerController>();
+        CustomerController newCustomer = Instantiate(customerBase, position, rotation, transform).GetComponent<CustomerController>();
         newCustomer.SetFood(cookedFoodList[Random.Range(0,cookedFoodList.Length)]);
         generatedCustomers.Add(newCustomer);
         return newCustomer;
@@ -90,6 +91,6 @@ public class CustomerManager : MonoBehaviour
     [ContextMenu("Test_Spawn")]
     public void Test_Spawn()
     {
-        SpawnCustomerAt(new Vector3(Random.Range(-10,10),0,Random.Range(-10,10)));
+        SpawnCustomerAt(new Vector3(Random.Range(-10,10),0,Random.Range(-10,10)),Quaternion.identity);
     }
 }

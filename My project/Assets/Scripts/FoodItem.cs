@@ -11,5 +11,20 @@ public class FoodItem : ScriptableObject
 
     public float CookTime;
     public bool isCookFood;
-    
+
+
+    // Only for food that can be requested
+    public Sprite Icon;
+
+    // For Ingredients
+    public Color NameColour;
+
+    public List<Recipe> Recipes;
+}
+
+[System.Serializable]
+public class Recipe
+{
+    public FoodItem OtherIngredient;
+    public FoodItem Result;
 }

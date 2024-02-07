@@ -329,7 +329,7 @@ namespace RotoVR.SDK.API
                             rotoAngle = (int)(m_StartRotoAngle + angle);
                             rotoAngle = NormalizeAngle(rotoAngle);
 
-                            RotateToAngle(GetDirection(rotoAngle, m_RotoData.Angle), rotoAngle, 30);
+                            RotateToAngle(GetDirection(rotoAngle, m_RotoData.Angle), rotoAngle,100);
                         }
 
                         deltaTime = 0;
@@ -373,7 +373,7 @@ namespace RotoVR.SDK.API
                         angle = NormalizeAngle(angle);
                         angle += m_RotoData.Angle;
 
-                        RotateToAngle(Direction.Left, (int)NormalizeAngle(angle), 30);
+                        RotateToAngle(Direction.Left, (int)NormalizeAngle(angle), 100);
                         deltaTime = 0;
 
                         lastTargetAngle = currentTargetAngle;
