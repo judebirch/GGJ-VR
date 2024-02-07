@@ -41,6 +41,7 @@ public class ChairController : MonoBehaviour
 
 
         /* m_RotoBerhaviour.Connect();*/
+        //test
 
 
     }
