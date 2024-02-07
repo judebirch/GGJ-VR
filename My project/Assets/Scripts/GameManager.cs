@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour, IFoodContainer
@@ -17,32 +19,53 @@ public class GameManager : MonoBehaviour, IFoodContainer
 
     public List<Station> Stations;
 
+
+    public GameObject GameOverUI;
+    public TMP_Text GameOverText;
+
+    public float GameTimer;
+    public int WaitingCustomers;
+    public int Served;
+
+    public bool isFinished = false;
+
+
     private void Awake()
     {
         Instance = this;
+        GameTimer = 0;
+        Time.timeScale = .02f;
+        Invoke(nameof(DelayStart), 10 * Time.timeScale);
+    }
+
+    void DelayStart()
+    {
+        Time.timeScale = 1;
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.A))
-        {
-            MoveLeft();
-        }
+        GameTimer += Time.deltaTime;
 
-        if(Input.GetKeyDown(KeyCode.D))
-        {
-            MoveRight();
-        }
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            InteractButton();
-        }
-
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            ServeButton();
-        }
+        // if(Input.GetKeyDown(KeyCode.A))
+        // {
+        //     MoveLeft();
+        // }
+        //
+        // if(Input.GetKeyDown(KeyCode.D))
+        // {
+        //     MoveRight();
+        // }
+        //
+        // if (Input.GetKeyDown(KeyCode.F))
+        // {
+        //     InteractButton();
+        // }
+        //
+        // if (Input.GetKeyDown(KeyCode.G))
+        // {
+        //     ServeButton();
+        // }
     }
 
     public void InteractButton()
@@ -52,13 +75,12 @@ public class GameManager : MonoBehaviour, IFoodContainer
 
     public void ServeButton()
     {
-
     }
 
     public void MoveLeft()
     {
         AngleId -= 1;
-        if(AngleId < 0)
+        if (AngleId < 0)
         {
             AngleId += 8;
         }
@@ -73,6 +95,7 @@ public class GameManager : MonoBehaviour, IFoodContainer
         {
             AngleId -= 8;
         }
+
         angleIdText.SetText(AngleId.ToString());
     }
 
@@ -92,9 +115,6 @@ public class GameManager : MonoBehaviour, IFoodContainer
         HeldFoodItem = null;
         return temp;
     }
-<<<<<<< Updated upstream
-}
-=======
 
 
     public void GameOver()
@@ -117,16 +137,15 @@ public class GameManager : MonoBehaviour, IFoodContainer
 
     public void OnRestartGame()
     {
-      /*  return;*/
+        return;
 
         Debug.Log("restart press");
-       /* if (!isFinished)
+        if (!isFinished)
         {
             return;
-        }*/
+        }
 
         string currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneName);
     }
 }
->>>>>>> Stashed changes

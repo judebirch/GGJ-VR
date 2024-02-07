@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,19 +16,22 @@ public class PlayerMovement : MonoBehaviour
     int targetStation = 0;
 
     int prevStation = 1;
-    
 
 
+    public static PlayerMovement current;
+
+    private void Awake()
+    {
+        current = this;
+    }
 
 
     // Start is called before the first frame update
     void Start()
     {
-<<<<<<< Updated upstream
 
-=======
         controller.SetChairAngle(0);
->>>>>>> Stashed changes
+
     }
 
     bool buttonA;
@@ -116,14 +120,13 @@ public class PlayerMovement : MonoBehaviour
         targetStation = targetStation % stationCount;
         Debug.Log("Left " + targetStation);
         Debug.Log("calc:  " + (360 / stationCount) * targetStation);
-<<<<<<< Updated upstream
-=======
+
 
         debugText.text += "\nleft " + targetStation;
         debugText.text += "\ncalc:  " + (360 / stationCount) * targetStation;
 
         controller.SetChairAngle((360 / stationCount) * targetStation);
->>>>>>> Stashed changes
+
     }
 
     public void SetStation(int station)
